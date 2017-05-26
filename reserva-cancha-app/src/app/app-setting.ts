@@ -12,5 +12,6 @@ export class AppSettings {
      else
      endpoint => (AppSettings.endpoint = this.API_ENDPOINT);
      console.log(AppSettings.endpoint);
+     asdasdasddas
    }
 }
