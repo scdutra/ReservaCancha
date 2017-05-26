@@ -8,12 +8,28 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegistrateComponent } from './registrate/registrate.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReservaCanchaComponent } from './reserva-cancha/reserva-cancha.component';
+import { PersonaService }     from './services/persona.service';
+import { CanchaService }             from './services/cancha.service';
+import { FirstViewComponent } from './first-view/first-view.component';
+import { AuthenticationService } from './services/authentication.service';
+import { UserComponent } from './user/user.component';
+
+// used to create fake backend
+import { fakeBackendProvider } from './services/fake-backend';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
+import { FieldDetailComponent } from './field-detail/field-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegistrateComponent
+    RegistrateComponent,
+    ReservaCanchaComponent,
+    FirstViewComponent,
+    UserComponent,
+    FieldDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +37,14 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    PersonaService,
+    CanchaService,
+    AuthenticationService,
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

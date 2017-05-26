@@ -1,0 +1,13 @@
+<div id='select'>
+  <h1>{{title}} {{persona.nombre}}!</h1>
+  <div id='logout'>
+    <button (click)="logOutButton()" >Salir</button>
+  </div>
+  <nav>
+    <a routerLink="reserva-cancha" routerLinkActive="active">Estado Canchas</a>
+    <a routerLink="cancha-detalle" routerLinkActive="active">Nueva Cancha</a>
+  </nav>
+</div>
+<div id='main'>
+    <router-outlet></router-outlet>
+</div>

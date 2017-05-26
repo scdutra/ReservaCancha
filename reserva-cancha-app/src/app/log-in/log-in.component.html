@@ -1,17 +1,17 @@
 <h2>¡Bienvenido!</h2>
-<form (ngSubmit)="onSubmit()" #ingresoForm="ngForm">
+<form #ingresoForm="ngForm">
   <div class= "form-group">
     <label>Mail</label>
-    <input type="mail" class="form-control" id="mail" required
-    [(ngModel)]="model.mail" name="mail">
+    <input type="email" class="form-control" id="email" required
+    [(ngModel)]="model.email" name="email">
   </div>
   <div class= "form-group">
     <label>Contraseña</label>
-    <input type="password" class="form-control" id="pass" required
-    [(ngModel)]="model.pass" name="pass">
+    <input type="password" class="form-control" id="clave" required
+    [(ngModel)]="model.clave" name="clave">
   </div>
-  <button type="submit">Ingresar</button>
+  <button (click)="onSubmit()" >Ingresar</button>
 </form>
 <div>
-  <label><a href="">¿Olvidaste tu contraseña?</a></label>
+  <label>{{error}}</label>
 </div>

@@ -1,0 +1,30 @@
+<div *ngIf="cancha">
+  <h2> Agregando campito... </h2>
+  <div>
+    <label>Tamaño</label>
+    <input type="text" id="tamano"
+    [(ngModel)]="cancha.tamano" name="tamano">
+  </div>
+  <div>
+    <label>Precio por hora</label>
+    <input type="number"  id="preciohora"
+    [(ngModel)]="cancha.preciohora" name="preciohora">
+  </div>
+  <div>
+    <label>Jugadores</label>
+    <input type="number"  id="jugadores"
+    [(ngModel)]="cancha.jugadores" name="jugadores">
+  </div>
+  <div>
+    <label>Estado</label>
+    <input type="text"  id="estado"
+    [(ngModel)]="cancha.estado" name="estado">
+  </div>
+  <div>
+    <button (click)="goBack()" class="btn btn-success">Volver</button>
+    <button (click)="createField()" class="btn btn-success">Crear</button>
+  </div>
+</div>
+<div *ngIf="!cancha">
+  hola
+</div>

@@ -1,33 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 //import { ActivatedRoute, Params } from '@angular/router';
 import { Jugador }           from '../jugador';
-import { AltaJugadorService } from '../alta-jugador.service';
+import { PersonaService } from '../services/persona.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrate',
   templateUrl: './registrate.component.html',
-  styleUrls: ['./registrate.component.css'],
-  providers: [AltaJugadorService]
+  styleUrls: ['./registrate.component.css']
 })
 
 export class RegistrateComponent implements OnInit {
-  jugador: Jugador;
-  submitted = false;
+  persona: Jugador;
 
-  constructor( private altaJugadorService: AltaJugadorService ) { }
 
-  model = new Jugador('');
+  constructor( private router: Router, private personaService: PersonaService ) {
+      this.persona = new Jugador();
+   }
 
-  onSumit(): void {
-    this.altaJugadorService.crearJugador(this.model)
-      .then(jugador => this.jugador = jugador);
-      this.submitted = true;
-      console.log(this.jugador);
+  registracion(): void {
+    this.personaService.altaPersonaService(this.persona)
+      .then(persona => {
+        this.persona = persona;
+        if (persona.id > 0)
+        {
+          localStorage.setItem('Jpersona', JSON.stringify(this.persona));
+          console.log(localStorage.getItem('Jpersona'));
+          this.router.navigate(['/reserva-cancha', this.persona.id]);
+        }
+      });
   }
 
-  get diagnostic() {return JSON.stringify(this.jugador); }
-
   ngOnInit() {
+    console.log('RegistrateComponent');
   }
 
 }

@@ -1,0 +1,29 @@
+<h2>{{subtitle}}</h2>
+  <div id='soccer-fields'>
+    <table id= 'field-table'>
+      <thead>
+        <tr>
+          <th>Tamaño</th>
+          <th>Precio hora</th>
+          <th>Jugadores</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cancha of canchas"
+          [class.selected]="cancha === selectedCancha"
+          (click)="onSelect(cancha)">
+          <td>{{cancha.tamano}}</td>
+          <td>{{cancha.preciohora}}</td>
+          <td>$ {{cancha.jugadores}}</td>
+          <td>{{cancha.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="selectedCancha">
+      <h3>
+        {{selectedCancha.tamano | uppercase}} cancha seleccionada
+      </h3>
+      <button (click)="gotoEdit()">Editar</button>
+    </div>
+  </div>
