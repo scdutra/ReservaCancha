@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FieldDetailComponent } from './field-detail.component';
+import { IngresoComponent } from './ingreso.component';
 
-describe('FieldDetailComponent', () => {
-  let component: FieldDetailComponent;
-  let fixture: ComponentFixture<FieldDetailComponent>;
+describe('IngresoComponent', () => {
+  let component: IngresoComponent;
+  let fixture: ComponentFixture<IngresoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FieldDetailComponent ]
+      declarations: [ IngresoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FieldDetailComponent);
+    fixture = TestBed.createComponent(IngresoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,8 +14,8 @@
           [class.selected]="cancha === selectedCancha"
           (click)="onSelect(cancha)">
           <td>{{cancha.tamano}}</td>
-          <td>{{cancha.preciohora}}</td>
-          <td>$ {{cancha.jugadores}}</td>
+          <td>${{cancha.preciohora}}</td>
+          <td>{{cancha.jugadores}}</td>
           <td>{{cancha.estado}}</td>
         </tr>
       </tbody>

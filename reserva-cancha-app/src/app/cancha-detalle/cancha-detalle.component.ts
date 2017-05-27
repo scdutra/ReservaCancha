@@ -6,11 +6,11 @@ import { CanchaService } from '../services/cancha.service';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-field-detail',
-  templateUrl: './field-detail.component.html',
-  styleUrls: ['./field-detail.component.css']
+  selector: 'app-cancha-detalle',
+  templateUrl: './cancha-detalle.component.html',
+  styleUrls: ['./cancha-detalle.component.css']
 })
-export class FieldDetailComponent implements OnInit {
+export class CanchaDetalleComponent implements OnInit {
 cancha: Cancha;
 
   constructor(
@@ -22,8 +22,13 @@ cancha: Cancha;
 
   ngOnInit(): void {
     this.route.params
-       .switchMap((params: Params) => this.canchaService.recuperarCanchaDetalle(+params['id']))
-       .subscribe(cancha =>this.cancha = cancha)
+       .switchMap((params: Params) =>{
+              if(params['id'])
+                return this.canchaService.recuperarCanchaDetalle(+params['id']);
+              else
+                return Promise.resolve(new Cancha());
+          }
+       ).subscribe(cancha =>this.cancha = cancha)
   }
 
   goBack(): void {

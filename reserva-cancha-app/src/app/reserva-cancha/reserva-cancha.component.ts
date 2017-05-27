@@ -32,7 +32,7 @@ id: number;
     this.selectedCancha = canchas;
   }
   gotoEdit(): void {
-    this.router.navigate(['../cancha-directo', this.selectedCancha.id], { relativeTo: this.route });
+    this.router.navigate(['../cancha-detalle', this.selectedCancha.id], { relativeTo: this.route });
   }
 
   ngOnInit(): void {

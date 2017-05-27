@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReservaCanchaComponent } from './reserva-cancha/reserva-cancha.component';
 import { PersonaService }     from './services/persona.service';
 import { CanchaService }             from './services/cancha.service';
-import { FirstViewComponent } from './first-view/first-view.component';
+import { IngresoComponent } from './ingreso/ingreso.component';
 import { AuthenticationService } from './services/authentication.service';
 import { UserComponent } from './user/user.component';
 
@@ -19,7 +19,7 @@ import { UserComponent } from './user/user.component';
 import { fakeBackendProvider } from './services/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
-import { FieldDetailComponent } from './field-detail/field-detail.component';
+import { CanchaDetalleComponent } from './cancha-detalle/cancha-detalle.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,9 @@ import { FieldDetailComponent } from './field-detail/field-detail.component';
     LogInComponent,
     RegistrateComponent,
     ReservaCanchaComponent,
-    FirstViewComponent,
+    IngresoComponent,
     UserComponent,
-    FieldDetailComponent,
+    CanchaDetalleComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirstViewComponent } from './first-view/first-view.component';
+import { IngresoComponent } from './ingreso/ingreso.component';
 import { RouterModule, Route } from '@angular/router';
 
 @Component({
