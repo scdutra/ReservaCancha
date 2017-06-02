@@ -13,11 +13,10 @@ import { PersonaService }     from './services/persona.service';
 import { CanchaService }             from './services/cancha.service';
 import { IngresoComponent } from './ingreso/ingreso.component';
 import { AuthenticationService } from './services/authentication.service';
+import { MockAuthenticationService } from './services/mock-authentication.service';
 import { UserComponent } from './user/user.component';
 
 // used to create fake backend
-import { fakeBackendProvider } from './services/fake-backend';
-import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { CanchaDetalleComponent } from './cancha-detalle/cancha-detalle.component';
 
@@ -41,9 +40,8 @@ import { CanchaDetalleComponent } from './cancha-detalle/cancha-detalle.componen
     PersonaService,
     CanchaService,
     AuthenticationService,
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions
+    BaseRequestOptions,
+    MockAuthenticationService
   ],
   bootstrap: [AppComponent]
 })

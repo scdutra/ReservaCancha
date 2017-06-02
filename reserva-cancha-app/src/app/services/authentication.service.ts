@@ -33,9 +33,10 @@ export class AuthenticationService {
     this.router.navigate(['']);
   }
 
+
   login(email: string, clave: string): Observable<logInJson> {
     console.log('login');
-      return this.http.post(`${AppSettings.endpoint}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
+      return this.http.post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
           .map((response: Response) => {
                   console.log(response);
 
@@ -44,10 +45,12 @@ export class AuthenticationService {
 
                   console.log(logInResponse);
 
-                  localStorage.setItem('currentUser', JSON.stringify({ id: logInResponse.persona.id, nombre: logInResponse.persona.nombre, token: logInResponse.token }));
+                  //localStorage.setItem('currentUser', JSON.stringify({ id: logInResponse.persona.id, nombre: logInResponse.persona.nombre, token: logInResponse.token }));
 
                   return logInResponse;
 
+                }, error => {
+                  console.log(error.json())
           });
   }
 

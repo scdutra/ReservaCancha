@@ -3,6 +3,7 @@
     <table id= 'field-table'>
       <thead>
         <tr>
+          <th>Nombre</th>
           <th>Tamaño</th>
           <th>Precio hora</th>
           <th>Jugadores</th>
@@ -13,6 +14,7 @@
         <tr *ngFor="let cancha of canchas"
           [class.selected]="cancha === selectedCancha"
           (click)="onSelect(cancha)">
+          <td>{{cancha.nombre}}</td>
           <td>{{cancha.tamano}}</td>
           <td>${{cancha.preciohora}}</td>
           <td>{{cancha.jugadores}}</td>

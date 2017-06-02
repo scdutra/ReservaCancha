@@ -27,6 +27,11 @@ id: number;
     this.canchaService.recuperarCanchasLocal()
       .then(canchas => this.canchas = canchas );
   }
+  recuperarCanchasService(): void {
+    this.canchaService.recuperarCanchasService()
+      .subscribe(canchas => this.canchas = canchas );
+  }
+
 
   onSelect(canchas: Cancha): void {
     this.selectedCancha = canchas;
@@ -37,6 +42,7 @@ id: number;
 
   ngOnInit(): void {
       console.log('ReservaCanchaComponent');
-      this.recuperarCanchasLocal();
+      // this.recuperarCanchasLocal();
+      this.recuperarCanchasService();
     }
 }

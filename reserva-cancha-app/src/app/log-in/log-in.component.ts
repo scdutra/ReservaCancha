@@ -1,8 +1,9 @@
 import { Component, OnInit }  from '@angular/core';
 
 import { AuthenticationService } from '../services/authentication.service';
+import { MockAuthenticationService } from '../services/mock-authentication.service';
 import { Router } from '@angular/router';
-import { logInJson } from '../jsonModel';
+import { Jugador } from '../jugador';
 
 @Component({
   selector: 'app-log-in',
@@ -12,31 +13,23 @@ import { logInJson } from '../jsonModel';
 
 export class LogInComponent implements OnInit {
   model: any = {};
-  loading = false;
-  error = '';
+  jugador: Jugador;
 
   constructor (
       private router: Router,
-      private authenticationService: AuthenticationService) {
+      private authenticationService: MockAuthenticationService) {
   }
 
   loginUser() {
-      console.log('loginUser', this.model.email + this.model.clave);
-      this.loading = true;
+      console.log('loginUser', this.model.email, this.model.clave);
       this.authenticationService.login(this.model.email, this.model.clave)
-          .subscribe(result => {
-              if (result.status === 200) {
-                  console.log(result);
-                  // login successful
-                  this.router.navigate(['/user',result.persona.id,'reserva-cancha']);
-              } else {
-                  // login failed
-                  this.error = 'Username or password is incorrect';
-                  this.loading = false;
-                  console.log('NOK');
-              }
-          });
-  }
+        .then(
+          respuesta => {
+            this.jugador = respuesta;
+            this.router.navigate(['/user',this.jugador.id,'reserva-cancha']);
+          }
+        )
+      }
 
   onSubmit(): void {
     console.log('Submit User');
