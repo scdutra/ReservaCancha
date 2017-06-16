@@ -29,6 +29,7 @@ export class LogInComponent implements OnInit {
             this.router.navigate(['/user',this.jugador.id,'reserva-cancha']);
           }
         )
+        .catch(err => (console.log('err')))
       }
 
   onSubmit(): void {

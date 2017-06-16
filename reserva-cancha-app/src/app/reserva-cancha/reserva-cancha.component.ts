@@ -4,6 +4,8 @@ import { PersonaService } from '../services/persona.service';
 import 'rxjs/add/operator/switchMap';
 import { Cancha } from '../cancha';
 import { CanchaService } from '../services/cancha.service';
+import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'app-reserva-cancha',
@@ -29,7 +31,7 @@ id: number;
   }
   recuperarCanchasService(): void {
     this.canchaService.recuperarCanchasService()
-      .subscribe(canchas => this.canchas = canchas );
+      .subscribe(canchas => {this.canchas = canchas; console.log(canchas);}, err => console.log(err) );
   }
 
 
@@ -42,7 +44,7 @@ id: number;
 
   ngOnInit(): void {
       console.log('ReservaCanchaComponent');
-      // this.recuperarCanchasLocal();
       this.recuperarCanchasService();
+      // this.recuperarCanchasLocal();
     }
 }

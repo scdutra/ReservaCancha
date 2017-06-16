@@ -34,24 +34,16 @@ export class AuthenticationService {
   }
 
 
-  login(email: string, clave: string): Observable<logInJson> {
+  login(email: string, clave: string): Promise<Jugador> {
     console.log('login');
-      return this.http.post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
-          .map((response: Response) => {
-                  console.log(response);
-
-                  var logInResponse = response.json();
-                  logInResponse.status = response.status;
-
-                  console.log(logInResponse);
-
+    let logInResponse
+      this.http.post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
+              .subscribe((response: Response) => {
+                              console.log(response);
+                              logInResponse = response.json();
                   //localStorage.setItem('currentUser', JSON.stringify({ id: logInResponse.persona.id, nombre: logInResponse.persona.nombre, token: logInResponse.token }));
-
-                  return logInResponse;
-
-                }, error => {
-                  console.log(error.json())
-          });
+                })
+      return logInResponse;
   }
 
 }

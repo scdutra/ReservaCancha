@@ -20,7 +20,7 @@ export class RegistrateComponent implements OnInit {
 
   registracion(): void {
     this.personaService.altaPersonaService(this.persona)
-      .then(persona => {
+      .subscribe(persona => {
         this.persona = persona;
         if (persona.id > 0)
         {
@@ -28,7 +28,9 @@ export class RegistrateComponent implements OnInit {
           console.log(localStorage.getItem('Jpersona'));
           this.router.navigate(['/reserva-cancha', this.persona.id]);
         }
-      });
+      },
+      err => console.log("mi errror")
+    );
   }
 
   ngOnInit() {

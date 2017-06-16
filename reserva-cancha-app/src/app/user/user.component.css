@@ -47,6 +47,18 @@ h1 {
   float: right;
   margin-top: auto;
   margin-right: auto;
+
+}
+#logoutbutton {
+  background-color: #1E392A;
+  border-radius: 4px;
+  padding: 1em 2em;
+  display: inline-block;
+  color: white;
+}
+#logoutbutton:hover {
+  color: #1E392A;
+  background-color: #CFD8DC;
 }
 h3 {
   margin: 0

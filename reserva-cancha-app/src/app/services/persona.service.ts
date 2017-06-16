@@ -42,18 +42,15 @@ export class PersonaService {
 
   /* Alta persona*/
 
-  altaPersonaService(persona: Jugador): Promise<Jugador> {
+  altaPersonaService(persona: Jugador): Observable<Jugador> {
 
     console.log(`1 ${AppSettings.API_ENDPOINT}${this.PERSONA}`);
     var data = JSON.parse( JSON.stringify(persona) );
     console.log('2');
     console.log(data);
 
-    return Promise.resolve(this._http
-
-        .post(`${AppSettings.API_ENDPOINT}${this.PERSONA}`,data)
-        .subscribe((value: Response) => { this.jugador = <Jugador>value.json()})
-   )
+    return this._http
+        .post(`${AppSettings.API_ENDPOINT}${this.PERSONA}`,data);
   }
 
   personaDetalleService(id: number): Promise<Jugador> {

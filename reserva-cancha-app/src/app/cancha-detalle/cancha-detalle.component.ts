@@ -31,12 +31,13 @@ subtitle= 'Armando el campito...';
     this.route.params
        .switchMap((params: Params) =>{
               if(params['id'])
-                return this.canchaService.recuperarCanchaDetalleLocal(+params['id']);
-                // return this.canchaService.recuperarCanchaDetalleService(+params['id']);
+                // return this.canchaService.recuperarCanchaDetalleLocal(+params['id']);
+                return this.canchaService.recuperarCanchaDetalleService(+params['id']);
               else
                 return Promise.resolve(new Cancha());
           }
        ).subscribe(cancha => this.cancha = cancha)
+       console.log(this.cancha);
   }
 
   goBack(): void {
@@ -44,31 +45,25 @@ subtitle= 'Armando el campito...';
   }
 
   createField(): void {
+
     this.canchaService.altaCanchaService(this.cancha)
-      .then(cancha => {
-        this.cancha = cancha;
-        console.log('createField ',this.cancha);
-      })
-      .then(go => {
-        console.log('navigate ');
-        this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
+      .subscribe(resp => {
+        this.router.navigate(['../reserva-cancha'], { relativeTo: this.route });
         }
       )
   }
 
   deleteField(){
-    this.canchaService.borrarCanchaService(this.cancha)
-      .then(cancha => {
-        this.cancha = cancha;
-      });
-    this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
+    this.canchaService.borrarCanchaService(this.cancha.id)
+    .subscribe(resp => {
+        this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
+    });
   }
   updateField(){
     this.canchaService.actualizarCanchaService(this.cancha)
-      .then(cancha => {
-    this.cancha = cancha;
-    this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
-  });
+      .subscribe(resp => {
+          this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
+    });
   }
 
 

@@ -8,8 +8,8 @@ import { AppSettings }  from '../app-setting';
 @Injectable()
 export class CanchaService {
 
-  CANCH= '/canchas'
-  canchaDet: Cancha;
+  CANCH= '/cancha'
+  cancha: Cancha;
   canchaOrig: Cancha;
   canchas: Cancha[];
 
@@ -17,20 +17,18 @@ export class CanchaService {
 
   recuperarCanchaDetalleLocal(id: number): Promise<Cancha>{
     console.log('recuperarCanchaDetalleLocal ', id);
-    this.canchaDet = this.recuperarCanchasLocal()
-                .then(canchas => canchas.find(cancha => cancha.id === id));
-    console.log (this.canchaDet);
-    return Promise.resolve(this.canchaDet);
+    this.cancha = this.recuperarCanchasLocal()
+                .then(cancha => cancha.find(cancha => cancha.id === id));
+    console.log (this.cancha);
+    return Promise.resolve(this.cancha);
   }
 
-  recuperarCanchaDetalleService(id: number): Promise<Cancha>{
-    console.log(`recuperarCanchasService: ${AppSettings.API_ENDPOINT}${this.CANCH} `, id);
-    return Promise.resolve(this._http
-
-        .get(`${AppSettings.API_ENDPOINT}${this.CANCH}`,JSON.stringify({ id: id}))
-        .subscribe((value: Response) => { this.canchas = value.json()}));
+  recuperarCanchaDetalleService(id: number): Observable<Cancha>{
+    console.log(`recuperarCanchasService: ${AppSettings.API_ENDPOINT}${this.CANCH}`+ id);
+    return this._http
+        .get(`${AppSettings.API_ENDPOINT}${this.CANCH}/`+ id)
+        .map(response => this.cancha = response.json());
   }
-
 
   recuperarCanchasLocal(): Promise<Cancha[]> {
       console.log('recuperarCanchasLocal');
@@ -38,62 +36,34 @@ export class CanchaService {
   }
 
   recuperarCanchasService(): Observable<Cancha[]> {
-
     console.log(`recuperarCanchasService: ${AppSettings.API_ENDPOINT}${this.CANCH}`);
-    return this._http
+    return  this._http
       .get(`${AppSettings.API_ENDPOINT}${this.CANCH}`)
-      .flatMap((response: Response) =>
-             //Waits until all the requests are completed before emitting
-             //an array of results
-          Observable.forkJoin
-          (
-            response.json().files.map
-            (
-              campo => this._http.get(campo).map(resp => resp.json().title)
-            )
-          )
-        );
+      .map(response => this.canchas = response.json());
   }
-  borrarCanchaService(canchaOrig: Cancha): Promise<Cancha> {
 
-    console.log(`borrarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`);
+  borrarCanchaService(id: number): Observable<Response> {
+    console.log(`borrarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`, id);
+    var data = JSON.parse( JSON.stringify({id: id}));
+    return this._http
+        .delete(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data);
+  }
+
+  actualizarCanchaService(canchaOrig: Cancha): Observable<Response> {
+    console.log(`actualizarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`, canchaOrig);
     var data = JSON.parse( JSON.stringify(canchaOrig) );
-    console.log('2 ');
-    console.log(data);
-
-    return Promise.resolve(this._http
-
-        .delete(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data)
-        .subscribe((value: Response) => { this.canchaOrig = value.json()})
-   )
+    return this._http
+        .put(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data);
   }
-  actualizarCanchaService(canchaOrig: Cancha): Promise<Cancha> {
 
-    console.log(`actualizarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`);
-    var data = JSON.parse( JSON.stringify(canchaOrig) );
-    console.log('2 ');
-    console.log(data);
-
-    return Promise.resolve(this._http
-
-        .put(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data)
-        .subscribe((value: Response) => { this.canchaOrig = value.json()})
-   )
-  }
-  altaCanchaService(canchaOrig: Cancha): Promise<Cancha>  {
-
+  altaCanchaService(canchaOrig: Cancha): Observable<Response>  {
       console.log(`altaCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`);
       var data = JSON.parse( JSON.stringify(canchaOrig) );
       console.log('2 ');
       console.log(data);
 
-      return Promise.resolve(this._http
-
-          .post(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data)
-          .subscribe((value: Response) => { alert('Cancha ingresada'); this.canchaOrig = value.json();
-                              }, error => {alert('ERROOOOOOR!')}
-          )
-      );
+      return this._http
+          .post(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data);
   }
 
 }

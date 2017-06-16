@@ -23,7 +23,8 @@ const routes: Routes = [
       { path: 'cancha-detalle', component: CanchaDetalleComponent },
       { path: 'cancha-detalle/:id', component: CanchaDetalleComponent },
     ]
-  }
+  },
+  { path: '**', redirectTo: '/ingreso/log-in'}
 ];
 
 @NgModule({

@@ -34,7 +34,7 @@ import { CanchaDetalleComponent } from './cancha-detalle/cancha-detalle.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     PersonaService,
