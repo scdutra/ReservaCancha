@@ -32,5 +32,10 @@
     <button (click)="deleteField()" class="btn btn-success">Eliminar</button>
     <button (click)="updateField()" class="btn btn-success">Aceptar</button>
   </div>
+</div>
+<div>
   <button (click)="goBack()" class="btn btn-success">Volver</button>
+</div>
+<div id="error" *ngIf="!error">
+  {{msj}}
 </div>

@@ -10,7 +10,6 @@ export class CanchaService {
 
   CANCH= '/cancha'
   cancha: Cancha;
-  canchaOrig: Cancha;
   canchas: Cancha[];
 
   constructor(private _http: Http) {}
@@ -44,16 +43,14 @@ export class CanchaService {
 
   borrarCanchaService(id: number): Observable<Response> {
     console.log(`borrarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`, id);
-    var data = JSON.parse( JSON.stringify({id: id}));
     return this._http
-        .delete(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data);
+        .delete(`${AppSettings.API_ENDPOINT}${this.CANCH}/`+ id);
   }
 
   actualizarCanchaService(canchaOrig: Cancha): Observable<Response> {
-    console.log(`actualizarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`, canchaOrig);
-    var data = JSON.parse( JSON.stringify(canchaOrig) );
+    console.log(`actualizarCanchaService: ${AppSettings.API_ENDPOINT}${this.CANCH}`+ canchaOrig.id + canchaOrig);
     return this._http
-        .put(`${AppSettings.API_ENDPOINT}${this.CANCH}`,data);
+        .put(`${AppSettings.API_ENDPOINT}${this.CANCH}/`+ canchaOrig.id, canchaOrig);
   }
 
   altaCanchaService(canchaOrig: Cancha): Observable<Response>  {

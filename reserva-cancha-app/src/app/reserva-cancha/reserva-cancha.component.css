@@ -2,12 +2,22 @@ table, th, td {
    border: 1px solid black;
    border-collapse: collapse;
 }
-#soccer-fields { align-self: right;}
-table#field-table {
-  text-align:center;
+#soccer-fields {
+  overflow:auto;
+  height:25em;
+  width: 21em;
+  margin-left:auto;
+  margin-right:auto;
+}
+table #field-table {
+  align:center;
   margin-left:auto;
   margin-right:auto;
 }
 h2 {
   margin-top: 0;
+}
+#error{
+  color: red;
+  background-color: white;
 }

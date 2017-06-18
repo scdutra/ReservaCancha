@@ -2,3 +2,13 @@ h2 {
   color: #000;
   margin-top: 0;
 }
+#error{
+  color: red;
+  background-color: white;
+}
+label{
+  display:inline-block;
+  width:7em;
+  margin-right:1em;
+  text-align:right;
+}

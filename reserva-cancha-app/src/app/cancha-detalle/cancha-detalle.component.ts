@@ -15,9 +15,11 @@ import 'rxjs/add/operator/catch';
   templateUrl: './cancha-detalle.component.html',
   styleUrls: ['./cancha-detalle.component.css']
 })
+
 export class CanchaDetalleComponent implements OnInit {
 cancha: Cancha;
 subtitle= 'Armando el campito...';
+msj: string;
 
   constructor(
     private canchaService: CanchaService,
@@ -36,7 +38,7 @@ subtitle= 'Armando el campito...';
               else
                 return Promise.resolve(new Cancha());
           }
-       ).subscribe(cancha => this.cancha = cancha)
+       ).subscribe(cancha => this.cancha = cancha, err=>(this.msj = err)) //"No se pudo recuperar la cancha")
        console.log(this.cancha);
   }
 
@@ -45,12 +47,12 @@ subtitle= 'Armando el campito...';
   }
 
   createField(): void {
-
     this.canchaService.altaCanchaService(this.cancha)
-      .subscribe(resp => {
-        this.router.navigate(['../reserva-cancha'], { relativeTo: this.route });
-        }
-      )
+      .subscribe(resp =>this.router.navigate(['../reserva-cancha'], { relativeTo: this.route }),
+      (res)=>{
+        console.log('error');
+        this.msj = res;
+      });
   }
 
   deleteField(){
@@ -65,6 +67,4 @@ subtitle= 'Armando el campito...';
           this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
     });
   }
-
-
 }

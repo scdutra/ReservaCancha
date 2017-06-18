@@ -20,5 +20,8 @@
       <input type="password" class="form-control" id="clave"
       [(ngModel)]="persona.clave" name="clave">
     </div>
-    <button (click)="registracion()" class="btn btn-success" [disabled]="!ingresoForm.form.valid">Registrarse</button>
+    <button (click)="registracion()" class="btn btn-success" [disabled]="!ingresoForm.form.valid">Enviar</button>
   </form>
+<div id="error" *ngIf="!error">
+  {{msj}}
+</div>

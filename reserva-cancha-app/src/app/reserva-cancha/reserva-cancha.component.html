@@ -1,8 +1,6 @@
 <h2>{{subtitle}}</h2>
   <div id='soccer-fields'>
-    <table id= 'field-table'
-
-        >
+    <table id= 'field-table'>
       <thead>
         <tr>
           <th>Nombre</th>
@@ -26,8 +24,11 @@
     </table>
     <div *ngIf="selectedCancha">
       <h3>
-        {{selectedCancha.tamano | uppercase}} cancha seleccionada
+        {{selectedCancha.nombre | uppercase}} seleccionado/a
       </h3>
       <button (click)="gotoEdit()">Editar</button>
     </div>
+  </div>
+  <div id="error" *ngIf="!error">
+    {{msj}}
   </div>
