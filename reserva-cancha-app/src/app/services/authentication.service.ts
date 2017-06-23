@@ -10,14 +10,13 @@ import { logInJson } from '../jsonModel';
 @Injectable()
 export class AuthenticationService {
   public token: string;
-  LOGIN= '/login';
+  LOGIN= '/session';
 
   constructor(
     private router: Router,
     private http: Http,
   ){
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+  
   }
 
   createAuthorizationHeader(token: string): Promise<Headers> {
@@ -34,16 +33,9 @@ export class AuthenticationService {
   }
 
 
-  login(email: string, clave: string): Promise<Jugador> {
+  login(email: string, clave: string): Observable<Response> {
     console.log('login');
-    let logInResponse
-      this.http.post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
-              .subscribe((response: Response) => {
-                              console.log(response);
-                              logInResponse = response.json();
-                  //localStorage.setItem('currentUser', JSON.stringify({ id: logInResponse.persona.id, nombre: logInResponse.persona.nombre, token: logInResponse.token }));
-                })
-      return logInResponse;
+    return this.http.post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`, JSON.stringify({ email: email, clave: clave }))
   }
 
 }

@@ -51,20 +51,26 @@ msj: string;
       .subscribe(resp =>this.router.navigate(['../reserva-cancha'], { relativeTo: this.route }),
       (res)=>{
         console.log('error');
-        this.msj = res;
+        this.msj = res.json();
       });
   }
 
   deleteField(){
     this.canchaService.borrarCanchaService(this.cancha.id)
-    .subscribe(resp => {
-        this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
-    });
+    .subscribe(resp => this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route }),
+            (res)=>{
+              console.log('error');
+              this.msj = res.json();
+            }
+    );
   }
   updateField(){
     this.canchaService.actualizarCanchaService(this.cancha)
-      .subscribe(resp => {
-          this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route });
-    });
+      .subscribe(resp => this.router.navigate(['../../reserva-cancha'], { relativeTo: this.route }),
+          (res)=>{
+            console.log('error');
+            this.msj = res.json();
+          }
+      );
   }
 }

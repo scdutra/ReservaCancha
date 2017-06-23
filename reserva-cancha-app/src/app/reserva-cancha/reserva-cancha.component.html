@@ -22,12 +22,12 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="selectedCancha">
-      <h3>
-        {{selectedCancha.nombre | uppercase}} seleccionado/a
-      </h3>
-      <button (click)="gotoEdit()">Editar</button>
-    </div>
+  </div>
+  <div *ngIf="selectedCancha">
+    <h3>
+      {{selectedCancha.nombre | uppercase}} seleccionado/a
+    </h3>
+    <button (click)="gotoEdit()">Editar</button>
   </div>
   <div id="error" *ngIf="!error">
     {{msj}}

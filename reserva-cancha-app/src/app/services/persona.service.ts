@@ -17,32 +17,9 @@ export class PersonaService {
   resp: number = 0;
 
   constructor(private _http: Http) { }
-  /* Recuperar persona */
-
-  recuperarPersonaService(persona: Jugador): Promise<Jugador> {
-
-      console.log(`1: ${AppSettings.API_ENDPOINT}${this.LOGIN}`);
-
-      var data = JSON.parse( JSON.stringify(persona) );
-      console.log('2');
-      console.log(data);
-
-      return Promise.resolve(this._http
-          .post(`${AppSettings.API_ENDPOINT}${this.LOGIN}`,data)
-          .subscribe((value: Response) => { var resp = <Jugador>value.json()
-              console.log('3');
-              console.log(resp);
-              console.log(value);
-            }, error => {
-                  console.log('Error:');
-                  console.log(error.json())
-              })
-      )
-}
-
   /* Alta persona*/
 
-  altaPersonaService(persona: Jugador): Observable<Jugador> {
+  altaPersonaService(persona: Jugador): Observable<Response> {
 
     console.log(`1 ${AppSettings.API_ENDPOINT}${this.PERSONA}`);
     var data = JSON.parse( JSON.stringify(persona) );
